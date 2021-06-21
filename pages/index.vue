@@ -48,6 +48,11 @@ export default {
             isMarried: true
           }
         ],
+        bulkActions: [
+          { event: 'delete-people', name: 'Delete People' },
+          { event: 'print-people', name: 'List People in CSV file' },
+          { event: 'clean-people', name: 'Clean People' }
+        ],
         styles: {
           fullWidth: true,
           actionText: 'See Person'

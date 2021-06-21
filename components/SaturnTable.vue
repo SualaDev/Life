@@ -31,7 +31,7 @@
             </svg>
           </button>
         </th>
-        <th v-for="(header, index) in dataMutable.headers" :key="header.key" :class="[(header.isFilterable ? '' : 'no-filter')]" @click="sortColumn(header, index)">
+        <th v-for="(header) in dataMutable.headers" :key="header.key" :class="[(header.isFilterable ? '' : 'no-filter')]" @click="sortColumn(header)">
           <span> {{ header.label }} </span>
           <span>
             <svg
@@ -52,7 +52,7 @@
           Action
         </th>
       </tr>
-      <tr v-for="(label, index) in dataMutable.labels" :key="index">
+      <tr v-for="(label, index) in dataMutable.labels" :key="index" class="table-row">
         <td>
           <button class="clear-btn checkbox" @click="toggleCheck(label)">
             <svg
@@ -106,72 +106,87 @@
         </td>
       </tr>
     </table>
-    <div class="pagination">
-      <span>
-        PAGE ** of **
-      </span>
-      <span>
-        <button class="nav-btn first">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="4" />
-            <path d="M23.1602 11.41L18.5802 16L23.1602 20.59L21.7502 22L15.7502 16L21.7502 10L23.1602 11.41Z" fill="#8692A7" />
-            <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
-          </svg>
-        </button>
-        <button class="nav-btn previous">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="4" />
-            <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
-          </svg>
-        </button>
-        <span class="count-buttons">
-          <button class="nav-btn">
-            <span class="count">
-              1
-            </span>
+    <div class="pagination-bulk">
+      <div v-if="dataMutable.bulkActions !== undefined || dataMutable.bulkActions.length > 0" class="bulk">
+        <span>
+          Bulk Action:
+        </span>
+        <select v-model="selectedAction">
+          <option :value="null">
+            Choose Action
+          </option>
+          <option v-for="action in dataMutable.bulkActions" :key="action.key" :value="action">
+            {{ action.name }}
+          </option>
+        </select>
+      </div>
+      <div class="pagination">
+        <span>
+          PAGE ** of **
+        </span>
+        <span>
+          <button class="nav-btn first">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="4" />
+              <path d="M23.1602 11.41L18.5802 16L23.1602 20.59L21.7502 22L15.7502 16L21.7502 10L23.1602 11.41Z" fill="#8692A7" />
+              <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
+            </svg>
           </button>
-          <button class="nav-btn">
-            <span class="count">
-              2
-            </span>
+          <button class="nav-btn previous">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="4" />
+              <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
+            </svg>
           </button>
-          <button class="nav-btn">
-            <span class="count">
-              3
-            </span>
+          <span class="count-buttons">
+            <button class="nav-btn">
+              <span class="count">
+                1
+              </span>
+            </button>
+            <button class="nav-btn">
+              <span class="count">
+                2
+              </span>
+            </button>
+            <button class="nav-btn">
+              <span class="count">
+                3
+              </span>
+            </button>
+          </span>
+          <button class="nav-btn next">
+            <svg
+              style="transform: rotate(180deg)"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="32" height="32" rx="4" />
+              <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
+            </svg>
+          </button>
+          <button class="nav-btn last">
+            <svg
+              style="transform: rotate(180deg)"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="32" height="32" rx="4" />
+              <path d="M23.1602 11.41L18.5802 16L23.1602 20.59L21.7502 22L15.7502 16L21.7502 10L23.1602 11.41Z" fill="#8692A7" />
+              <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
+            </svg>
           </button>
         </span>
-        <button class="nav-btn next">
-          <svg
-            style="transform: rotate(180deg)"
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="32" height="32" rx="4" />
-            <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
-          </svg>
-        </button>
-        <button class="nav-btn last">
-          <svg
-            style="transform: rotate(180deg)"
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="32" height="32" rx="4" />
-            <path d="M23.1602 11.41L18.5802 16L23.1602 20.59L21.7502 22L15.7502 16L21.7502 10L23.1602 11.41Z" fill="#8692A7" />
-            <path d="M17.1602 11.41L12.5802 16L17.1602 20.59L15.7502 22L9.75016 16L15.7502 10L17.1602 11.41Z" fill="#8692A7" />
-          </svg>
-        </button>
-      </span>
-      <span>
-        ** rows per page
-      </span>
+        <span>
+          ** rows per page
+        </span>
+      </div>
     </div>
   </div>
   <div v-else class="stuff">
@@ -203,7 +218,8 @@ export default {
     return {
       checkedRows: new Set(),
       checkedRowsArray: [],
-      dataMutable: { ...this.data }
+      dataMutable: { ...this.data },
+      selectedAction: null
     }
   },
   computed: {
@@ -218,6 +234,16 @@ export default {
     months () {
       return ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December']
+    }
+  },
+  watch: {
+    selectedAction: {
+      immediate: true,
+      handler (val, _old) {
+        if (val !== null) {
+          this.$emit(val.event, this.checkedRowsArray)
+        }
+      }
     }
   },
   created () {
@@ -284,9 +310,8 @@ export default {
     /**
      * Method to sort column of data clicked according to { header.type }
      * @param header contains information about the column that is to be sorted
-     * @param column index of header in the header array.
      */
-    sortColumn (header, column) {
+    sortColumn (header) {
       switch (header.type) {
         case 'string':
           this.dataMutable.labels.sort((a, b) => {
@@ -325,16 +350,32 @@ export default {
   background: transparent;
   cursor: pointer;
 }
-.pagination {
+
+.pagination-bulk {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   color: #4B545A;
+  padding: 0 24px;
 }
-.pagination > span {
+.pagination-bulk > .pagination {
+  display: flex;
+  align-items: center;
+  color: #4B545A;
+  justify-content: flex-end;
+}
+.pagination-bulk > .pagination > span {
   margin-left: 16px;
   display: flex;
   align-items: center;
+}
+.bulk select {
+  border: 1px solid #DFE3E8;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 40px;
+  padding: 8px 0;
+  margin-left: 8px;
 }
 .nav-btn {
   text-align: left;
@@ -351,6 +392,7 @@ export default {
 .table-title {
   font-size: 1.25rem;
   font-weight: 600;
+  padding: 0 24px;
 }
 .clear-btn.checkbox {
   display: grid;
@@ -387,7 +429,12 @@ button .count {
 .header-row {
   text-align: left;
   background: #F0F2F4;
-  border-radius: 20px 20px 0px 0px;
+  font-size: 16px;
+  line-height: 18px;
+}
+.table-row:nth-of-type(odd) {
+  text-align: left;
+  background: #f1f1f1;
   font-size: 16px;
   line-height: 18px;
 }
