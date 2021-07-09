@@ -1,57 +1,55 @@
 <template>
-  <div>
+  <div class="container">
     <div class="btncontainer">
-      <button class="btn1">
+      <button class="btn-1">
         Placeholder
       </button>
-      <button class="btn2">
+      <button class="btn-2">
         Placeholder
       </button>
-      <button class="btn3">
+      <button class="btn-3">
         Placeholder
       </button>
-      <button class="btn4">
+      <button class="btn-4">
         Placeholder
       </button>
-      <button class="btn5">
+      <button class="btn-5">
         Placeholder
       </button>
-      <button class="btn6">
+      <button class="btn-6">
         Placeholder
       </button>
     </div>
     <div class="btncontainer">
-      <button class="btn1b">
+      <button class="btn-1b">
+        <p>Placeholder</p>
+        <img src="~assets/image/white.svg" alt="" :class="WhiteIcon">
+      </button>
+      <button class="btn-2b">
         <p>Placeholder</p>
         <img src="~assets/image/white.svg" alt="">
       </button>
-      <button class="btn2b">
+      <button class="btn-3b">
         <p>Placeholder</p>
         <img src="~assets/image/white.svg" alt="">
       </button>
-      <button class="btn3b">
+      <button class="btn-4b">
         <p>Placeholder</p>
-        <img src="~assets/image/white.svg" alt="">
+        <img src="~assets/image/orange.svg" alt="" :class="OrangeIcon">
       </button>
-      <button class="btn4b">
+      <button class="btn-5b">
         <p>Placeholder</p>
-        <img src="~assets/image/orange.svg" alt="">
+        <img src="~assets/image/darkgrey.svg" alt="" :class="DarkGreyIcon">
       </button>
-      <button class="btn5b">
+      <button class="btn-6b">
         <p>Placeholder</p>
-        <img src="~assets/image/darkgrey.svg" alt="">
-      </button>
-      <button class="btn6b">
-        <p>Placeholder</p>
-        <img src="~assets/image/lightgrey.svg" alt="">
+        <img src="~assets/image/lightgrey.svg" alt="" :class="LightGreyIcon">
       </button>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-}
 </script>
 
 <style>
@@ -67,7 +65,7 @@ margin-bottom: 2%;
 width:188px;
 height:50px;
 }
-.btn1{
+.btn-1{
   border-radius: 20px;
   background-color:#F87023;
   padding:17px 54px 18px 54px;
@@ -75,7 +73,7 @@ height:50px;
   border:none;
 }
 
-.btn2{
+.btn-2{
   border-radius: 20px;
   background-color:#5D6A73;
   padding:17px 54px 18px 54px;
@@ -83,7 +81,7 @@ height:50px;
   border:none;
 }
 
-.btn3{
+.btn-3{
   border-radius: 20px;
   background-color:#BBBBBB;
   padding:17px 54px 18px 54px;
@@ -91,7 +89,7 @@ height:50px;
   border:none;
 }
 
-.btn4{
+.btn-4{
   border-radius: 20px;
   background-color:white;
   padding:17px 54px 18px 54px;
@@ -99,7 +97,7 @@ height:50px;
   border:1px solid #F87023;
 }
 
-.btn5{
+.btn-5{
   border-radius: 20px;
   background-color:white;
   padding:17px 54px 18px 54px;
@@ -107,7 +105,7 @@ height:50px;
   border:1px solid #5D6A73;
 }
 
-.btn6{
+.btn-6{
   border-radius: 20px;
   background-color:#bbbbbb85;
   padding:17px 54px 18px 54px;
@@ -115,7 +113,7 @@ height:50px;
   border:1px solid #BBBBBB ;
 }
 
-.btn1b{
+.btn-1b{
   border-radius: 20px;
   background-color:#F87023;
   padding:0 24px ;
@@ -126,7 +124,7 @@ height:50px;
   align-items: center;
 }
 
-.btn2b{
+.btn-2b{
   border-radius: 20px;
   background-color:#5D6A73;
   padding:0 24px;
@@ -137,7 +135,7 @@ height:50px;
   align-items: center;
 }
 
-.btn3b{
+.btn-3b{
   border-radius: 20px;
   background-color:#BBBBBB;
   padding:0 24px;
@@ -148,7 +146,7 @@ height:50px;
   align-items: center;
 }
 
-.btn4b{
+.btn-4b{
   border-radius: 20px;
   background-color:white;
   padding:0 24px;
@@ -159,7 +157,7 @@ height:50px;
   align-items: center;
 }
 
-.btn5b{
+.btn-5b{
   border-radius: 20px;
   background-color:white;
   padding:0 24px;
@@ -170,7 +168,7 @@ height:50px;
   align-items: center;
 }
 
-.btn6b{
+.btn-6b{
   border-radius: 20px;
   background-color:transparent;
   padding:0 24px;
