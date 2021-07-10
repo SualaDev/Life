@@ -17,6 +17,6 @@ export default {
 
 <style>
 .iconBtn{
-  background-color: transparent;
+  background-color: rebeccapurple;
 }
 </style>
